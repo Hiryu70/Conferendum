@@ -1,4 +1,5 @@
-﻿using Conferendum.Models;
+﻿using System;
+using Conferendum.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -15,7 +16,6 @@ namespace Conferendum.Controllers
                 GetSection1(),
                 GetSection2()
             };
-
             return Ok(sections);
         }
 
@@ -24,13 +24,13 @@ namespace Conferendum.Controllers
         {
             if (section == "GIS")
             {
-                var sectinInfo = GetSection1().Info;
+                var sectinInfo = GetSection1().GetInfo();
                 return Ok(sectinInfo);
             }
             
             if (section == "CS")
             {
-                var sectinInfo = GetSection2().Info;
+                var sectinInfo = GetSection2().GetInfo();
                 return Ok(sectinInfo);
             }
 
@@ -42,12 +42,9 @@ namespace Conferendum.Controllers
             var section1 = new SectionEntry
             {
                 Section = "GIS",
-                Info = new Info
-                {
                     City = "Tomsk",
                     Name = "Geoinformation Systems",
                     Location = "Lenina 2, 404"
-                }
             };
 
             return section1;
@@ -58,12 +55,9 @@ namespace Conferendum.Controllers
             var section2 = new SectionEntry
             {
                 Section = "CS",
-                Info = new Info
-                {
                     City = "Tomsk",
                     Name = "Computer Science",
                     Location = "Lenina 30, 206"
-                }
             };
 
             return section2;

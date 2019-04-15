@@ -4,10 +4,19 @@ namespace Conferendum.Models
 {
     public sealed class SectionEntry
     {
-        [JsonProperty("section")]
         public string Section { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Location { get; set; }
 
-        [JsonProperty("info")]
-        public Info Info { get; set; }
+        public Info GetInfo()
+        {
+            return new Info()
+            {
+                Name = Name,
+                City = City,
+                Location = Location
+            };
+        }
     }
 }
